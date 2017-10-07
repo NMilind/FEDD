@@ -24,9 +24,9 @@
 #define __SKELTRACK_SKELETON_H__
 
 #include "skeltrack-joint.h"
-#include <glib.h>
-#include <glib-object.h>
-#include <gio/gio.h>
+#include "/usr/include/glib-2.0/glib.h"
+#include "/usr/include/glib-2.0/glib-object.h"
+#include "/usr/include/glib-2.0/gio/gio.h"
 
 G_BEGIN_DECLS
 
