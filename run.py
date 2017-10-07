@@ -14,7 +14,7 @@ def doloop():
         da = np.hstack((d3,rgb))
         
         # Simple Downsample
-        cv.ShowImage('both',np.array(da[::2,::2,::-1]))
+        cv.ShowImage('both', cv.fromarray(np.array(da[::2,::2,::-1])))
         cv.WaitKey(5)
         
 doloop()
