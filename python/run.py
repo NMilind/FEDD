@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 from freenect import sync_get_depth as get_depth, sync_get_video as get_video
-import cv  
+import cv
+import cv2
 import numpy as np
   
 def doloop():
 
     cascPath = "haarcascade_frontalface_default.xml"
-    faceCascade = cv.CascadeClassifier(cascPath)
+    faceCascade = cv2.CascadeClassifier(cascPath)
 
     global depth, rgb
     while True:
@@ -18,7 +19,7 @@ def doloop():
         da = np.hstack((d3,rgb))
 
         image = cv.fromarray(np.array(da[::2,::2,::-1]))
-        gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(image, cv.COLOR_BGR2GRAY)
 
         faces = faceCascade.detectMultiScale(
             gray,
@@ -28,7 +29,7 @@ def doloop():
         )
 
         for (x, y, w, h) in faces:
-            cv.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
+            cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
 
         # Simple Downsample
         cv.ShowImage('both', image)
