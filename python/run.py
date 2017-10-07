@@ -18,7 +18,7 @@ def doloop():
         d3 = np.dstack((depth,depth,depth)).astype(np.uint8)
         da = np.hstack((d3,rgb))
 
-        image = cv.fromarray(np.array(da[::2,::2,::-1]))
+        image = np.array(da[::2,::2,::-1])
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         faces = faceCascade.detectMultiScale(
@@ -32,7 +32,7 @@ def doloop():
             cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
 
         # Simple Downsample
-        cv.ShowImage('both', image)
+        cv.ShowImage('both', cv.fromarray(image))
         cv.WaitKey(5)
 
 doloop()
