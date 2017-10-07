@@ -22,7 +22,7 @@
  * for more details.
  */
 
-#include "/usr/include/glib-2.0/glib.h"
+#include <glib.h>
 #include "skeltrack-util.h"
 
 struct _PQueue_element {

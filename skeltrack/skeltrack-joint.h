@@ -23,8 +23,8 @@
 #ifndef __SKELTRACK_JOINT_H__
 #define __SKELTRACK_JOINT_H__
 
-#include "/usr/include/glib-2.0/glib.h"
-#include "/usr/include/glib-2.0/glib-object.h"
+#include <glib.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

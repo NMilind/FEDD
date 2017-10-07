@@ -23,7 +23,7 @@
 #ifndef __SKELTRACK_UTIL_H__
 #define __SKELTRACK_UTIL_H__
 
-#include "/usr/include/glib-2.0/glib.h"
+#include <glib.h>
 #include "skeltrack-joint.h"
 
 typedef struct _Label Label;
