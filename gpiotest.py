@@ -15,8 +15,11 @@ GPIO.setup(3, GPIO.OUT, initial = GPIO.HIGH)
 state = GPIO.LOW
 
 # Indefinite Blinking Behavior
-while (True):
+try:
+    while (True):
 
-    GPIO.output(3, state)
-    state = GPIO.LOW if (state == GPIO.HIGH) else state = GPIO.HIGH
-    time.sleep(0.5)
+        GPIO.output(3, state)
+        state = GPIO.LOW if (state == GPIO.HIGH) else state = GPIO.HIGH
+        time.sleep(0.5)
+except KeyboardInterrupt:
+    GPIO.cleanup()
