@@ -13,7 +13,7 @@ typedef struct
     gint reduced_height;
 } BufferInfo;
 
-static void on_track_joints (GObject *obj, GAsyncResult *res, gpoing user_data) {
+static void on_track_joints (GObject *obj, GAsyncResult *res, gpointer user_data) {
 
 }
 
