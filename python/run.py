@@ -19,7 +19,7 @@ def doloop():
         da = np.hstack((d3,rgb))
 
         image = cv.fromarray(np.array(da[::2,::2,::-1]))
-        gray = cv2.cvtColor(image, cv.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         faces = faceCascade.detectMultiScale(
             gray,
