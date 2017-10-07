@@ -19,7 +19,10 @@ try:
     while (True):
 
         GPIO.output(3, state)
-        state = GPIO.LOW if (state == GPIO.HIGH) else state = GPIO.HIGH
+        if (state == GPIO.HIGH):
+            state = GPIO.LOW
+        else:
+            state = GPIO.HIGH
         time.sleep(0.5)
 except KeyboardInterrupt:
     GPIO.cleanup()
