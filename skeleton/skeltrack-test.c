@@ -2,7 +2,7 @@
 #include <math.h>
 #include <string.h>
 
-static SkeletrackSkeleton *skeleton = NULL;
+static SkeltrackSkeleton *skeleton = NULL;
 
 int main() {
 
