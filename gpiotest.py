@@ -6,11 +6,13 @@ import RPi.GPIO as GPIO
 # Plug the ground into PIN 9
 # Plug the ain into PIN 3
 
+channel = int(input("Channel To Test: "))
+
 # Set mode to Board Pin Layout
 GPIO.setmode(GPIO.BOARD)
 
 # Set up PIN 3 as the main output, with an initial setting of 3.3V
-GPIO.setup(3, GPIO.OUT, initial = GPIO.HIGH)
+GPIO.setup(channel, GPIO.OUT, initial = GPIO.HIGH)
 
 state = GPIO.LOW
 
@@ -18,7 +20,7 @@ state = GPIO.LOW
 try:
     while (True):
 
-        GPIO.output(3, state)
+        GPIO.output(channel, state)
         if (state == GPIO.HIGH):
             state = GPIO.LOW
         else:
