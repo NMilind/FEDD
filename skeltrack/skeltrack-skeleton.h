@@ -23,7 +23,7 @@
 #ifndef __SKELTRACK_SKELETON_H__
 #define __SKELTRACK_SKELETON_H__
 
-#include <skeltrack-joint.h>
+#include "skeltrack-joint.h"
 #include <glib.h>
 #include <glib-object.h>
 #include <gio/gio.h>

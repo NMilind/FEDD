@@ -23,6 +23,6 @@
 #ifndef __SKELTRACK_H__
 #define __SKELTRACK_H__
 
-#include <skeltrack-skeleton.h>
+#include "skeltrack-skeleton.h"
 
 #endif /* __SKELTRACK_H__ */
