@@ -15,10 +15,10 @@ def doloop():
         (depth,_), (rgb,_) = get_depth(), get_video()
         
         # Build a two panel color image
-        d3 = np.dstack((depth,depth,depth)).astype(np.uint8)
-        da = np.hstack((d3,rgb))
+        #d3 = np.dstack((depth,depth,depth)).astype(np.uint8)
+        #da = np.hstack((d3,rgb))
 
-        image = np.array(da[::2,::2,::-1])
+        image = np.array(rgb[::2,::2,::-1])
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         faces = faceCascade.detectMultiScale(
