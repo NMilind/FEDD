@@ -15,8 +15,8 @@ def doloop():
         (depth,_), (rgb,_) = get_depth(), get_video()
         
         # Build a two panel color image
-        #d3 = np.dstack((depth,depth,depth)).astype(np.uint8)
-        #da = np.hstack((d3,rgb))
+        d3 = np.dstack((depth,depth,depth)).astype(np.uint8)
+        da = np.hstack((d3,rgb))
 
         image = np.array(rgb[::2,::2,::-1])
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -29,11 +29,11 @@ def doloop():
         )
 
         for (x, y, w, h) in faces:
-            #cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
+            cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
             print "(%s, %s)" % (x, y)
 
         # Simple Downsample
-        #cv.ShowImage('both', cv.fromarray(image))
-        #cv.WaitKey(5)
+        cv.ShowImage('both', cv.fromarray(image))
+        cv.WaitKey(5)
 
 doloop()
