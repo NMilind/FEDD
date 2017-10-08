@@ -29,10 +29,11 @@ def doloop():
         )
 
         for (x, y, w, h) in faces:
-            cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
+            #cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
+            print "(%s, %s)" % x, y
 
         # Simple Downsample
-        cv.ShowImage('both', cv.fromarray(image))
-        cv.WaitKey(5)
+        #cv.ShowImage('both', cv.fromarray(image))
+        #cv.WaitKey(5)
 
 doloop()
