@@ -7,8 +7,8 @@ cascPath = sys.argv[1]
 faceCascade = cv2.CascadeClassifier(cascPath)
 
 video_capture = cv2.VideoCapture(0)
-video_capture.set(3,320)
-video_capture.set(4,240)
+video_capture.set(3,160)
+video_capture.set(4,120)
 
 while True:
     # Capture frame-by-frame
