@@ -16,6 +16,7 @@ video_capture.set(4, HEIGHT)
 while True:
     # Capture frame-by-frame
     ret, frame = video_capture.read()
+    height, width, channels = frame.shape
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -31,7 +32,7 @@ while True:
     for (x, y, w, h) in faces:
         MID_X = (x + (w / 2.0))
         MID_Y = (y + (h / 2.0))
-        print("Face at (%s, %s) | Movement to the %s" % (x, y, ("Right" if (MID_X >= WIDTH / 2.0) else "Left")))
+        print("Face at (%s, %s) | Movement to the %s" % (MID_X, MID_Y, ("Right" if (MID_X >= width / 2.0) else "Left")))
         cv2.rectangle(gray, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
     # Display the resulting frame
