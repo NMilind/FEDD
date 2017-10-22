@@ -31,7 +31,7 @@ v_past = [0, 0]
 start_time = 0
 end_time = 0
 
-servo_control.initialize()
+#servo_control.initialize()
 
 while True:
 
