@@ -32,10 +32,10 @@ while True:
         MID_X = (x + (w / 2.0))
         MID_Y = (y + (h / 2.0))
         print("Face at (%s, %s)" % (MID_X, MID_Y))
-        # cv2.rectangle(gray, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        cv2.rectangle(gray, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
     # Display the resulting frame
-    # cv2.imshow('Video', gray)
+    cv2.imshow('Video', gray)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
