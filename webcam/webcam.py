@@ -1,6 +1,6 @@
 import sys
 import time
-import servo_control
+#import servo_control
 
 # Set the path to the OpenCV installation on the RPi
 sys.path.append("/usr/local/lib/python3.5/site-packages")
