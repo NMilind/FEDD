@@ -2,7 +2,7 @@
 import Adafruit_PCA9685
 
 # Movement constant
-MOVE = 0.8
+MOVE = 1.5
 
 #Initialize the PCA9685 Board using the default address (0x40)
 pwm = Adafruit_PCA9685.PCA9685()
