@@ -68,13 +68,13 @@ while True:
         # Calculate midpoints of face
         MID_X = (x + (w / 2.0))
         VEL_X = (MID_X - x_past[0]) / delta_t
-        VEL_X = (VEL_X + v_past[0]) / 2.0
+        #VEL_X = (VEL_X + v_past[0]) / 2.0
 
         # Add new values to history
         x_past = [MID_X] + x_past
         v_past = [VEL_X] + v_past
 
-	# Send input to servo module to move servo
+        # Send input to servo module to move servo
         servo_control.handle_input(VEL_X, delta_t)
 
         print("Face at X=%s | Movement: %s" % (MID_X, VEL_X))
