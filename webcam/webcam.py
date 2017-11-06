@@ -1,6 +1,6 @@
 import sys
 import time
-#import servo_control
+import servo_control
 
 # Set the path to the OpenCV installation on the RPi
 sys.path.append("/usr/local/lib/python3.5/site-packages")
@@ -31,7 +31,9 @@ v_past = [0, 0]
 start_time = 0
 end_time = 0
 
-#servo_control.initialize()
+# Initialize servo module
+
+servo_control.initialize()
 
 while True:
 
@@ -72,7 +74,8 @@ while True:
         x_past = [MID_X] + x_past
         v_past = [VEL_X] + v_past
 
-        #servo_control.handle_input(VEL_X, delta_t)
+	# Send input to servo module to move servo
+        servo_control.handle_input(VEL_X, delta_t)
 
         print("Face at X=%s | Movement: %s" % (MID_X, VEL_X))
         cv2.rectangle(gray, (x, y), (x+w, y+h), (0, 255, 0), 2)

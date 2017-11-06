@@ -2,7 +2,7 @@
 import Adafruit_PCA9685
 
 # Movement constant
-MOVE = 5
+MOVE = 0.8
 
 #Initialize the PCA9685 Board using the default address (0x40)
 pwm = Adafruit_PCA9685.PCA9685()
@@ -28,6 +28,7 @@ def get_pulse(value):
 def initialize():
     global current
     current = (SERVO_MAX + SERVO_MIN) / 2.0
+    current = int(current)
     pwm.set_pwm(CHANNEL, 0, current)
 
 # Handle input from the webcam
@@ -37,4 +38,5 @@ def handle_input(v, dt):
     dx = MOVE * v * dt
     current += dx
     current = get_pulse(current)
+    current = int(current)
     pwm.set_pwm(CHANNEL, 0, current)
