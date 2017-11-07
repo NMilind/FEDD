@@ -1,6 +1,12 @@
 # Import Adafruit library
 import Adafruit_PCA9685
 
+# Import threading modules
+import threading
+import time
+
+get_time = lambda: int(round(time.time() * 1000))
+
 # Movement constant
 MOVE = 1.5
 
@@ -14,6 +20,7 @@ CHANNEL = 0
 
 # Current position
 current = 0
+currentThread = None
 
 # Make sure pulses stay in range
 def get_pulse(value):
@@ -33,10 +40,27 @@ def initialize():
 
 # Handle input from the webcam
 def handle_input(v, dt):
+    global currentThread
+    if currentThread is None:
+        currentThread = threading.Thread(target=handle_input_async, args=(v, dt))
+        currentThread.start()
+    else:
+        currentThread.join()
+        currentThread = None
+        handle_input(v, dt)
+
+# Handle input asynchronously by lerping over the range in the given dt
+def handle_input_async(v, dt):
     global current
-    print("Will handle the input v=%s, dt=%s" % (v, dt))
-    dx = MOVE * v * dt
-    current += dx
-    current = get_pulse(current)
-    current = int(current)
-    pwm.set_pwm(CHANNEL, 0, current)
+    start = get_time()
+    while start <= start + dt:
+        start = get_time()
+        dx = lerp(v, (start / (start + dt)) * dt)
+        current += dx
+        current = get_pulse(current)
+        current = int(current)
+        pwm.set_pwm(CHANNEL, 0, current)
+
+# LERP helper function
+def lerp(v, t):
+    return MOVE * v * t
