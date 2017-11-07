@@ -53,9 +53,8 @@ def handle_input(v, dt):
 def handle_input_async(v, dt):
     global current
     start = get_time()
-    while start <= start + dt:
-        start = get_time()
-        dx = lerp(v, (start / (start + dt)) * dt)
+    while get_time() <= start + dt:
+        dx = lerp(v, (get_time() / (start + dt)) * dt)
         current += dx
         current = get_pulse(current)
         current = int(current)
