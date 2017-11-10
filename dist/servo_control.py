@@ -8,7 +8,7 @@ import time
 get_time = lambda: int(round(time.time() * 1000))
 
 # Movement constant
-MOVE = 0.5
+MOVE = 1
 
 #Initialize the PCA9685 Board using the default address (0x40)
 pwm = Adafruit_PCA9685.PCA9685()
