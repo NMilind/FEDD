@@ -25,8 +25,7 @@ video_capture = cv2.VideoCapture(0)
 video_capture.set(3, WIDTH)
 video_capture.set(4, HEIGHT)
 
-x_past = [0, 0, 0]
-v_past = [0, 0]
+x_past = [0, 0]
 
 start_time = 0
 end_time = 0
@@ -62,17 +61,14 @@ while True:
     for (x, y, w, h) in faces:
 
         # Remove last elements in history
-        x_past = x_past[0:2]
-        v_past = v_past[0:1]
+        x_past = x_past[0:1]
 
         # Calculate midpoints of face
         MID_X = (x + (w / 2.0))
         VEL_X = (MID_X - x_past[0]) / delta_t
-        #VEL_X = (VEL_X + v_past[0]) / 2.0
 
         # Add new values to history
         x_past = [MID_X] + x_past
-        v_past = [VEL_X] + v_past
 
         # Send input to servo module to move servo
         servo_control.handle_input(VEL_X, delta_t)
