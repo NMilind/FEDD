@@ -40,6 +40,12 @@ def initialize():
 
 # Handle input from the webcam
 def handle_input(v, dt):
+    global current
+    current += MOVE * v * dt
+    current = get_pulse(current)
+    current = int(current)
+    pwm.set_pwm(CHANNEL, 0, current)
+    return
     global currentThread
     if currentThread is None:
         currentThread = threading.Thread(target=handle_input_async, args=(v, dt))
