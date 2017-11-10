@@ -66,12 +66,13 @@ while True:
         # Calculate midpoints of face
         MID_X = (x + (w / 2.0))
         VEL_X = (MID_X - x_past[0]) / delta_t
+        VEL_X = -1 * (VEL_X ** 2) if VEL_X < 0 else VEL_X = VEL_X ** 2
 
         # Add new values to history
         x_past = [MID_X] + x_past
 
         # Send input to servo module to move servo
-        servo_control.handle_input(VEL_X ** 2, delta_t)
+        servo_control.handle_input(VEL_X, delta_t)
 
         print("Face at X=%s | Movement: %s" % (MID_X, VEL_X))
         cv2.rectangle(gray, (x, y), (x+w, y+h), (0, 255, 0), 2)
