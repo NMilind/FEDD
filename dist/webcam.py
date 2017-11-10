@@ -66,7 +66,11 @@ while True:
         # Calculate midpoints of face
         MID_X = (x + (w / 2.0))
         VEL_X = (MID_X - x_past[0]) / delta_t
-        VEL_X = -1 * (VEL_X ** 2) if VEL_X < 0 else VEL_X = VEL_X ** 2
+
+        if VEL_X < 0:
+            VEL_X = -1 * (VEL_X ** 2)
+        else:
+            VEL_X = VEL_X ** 2
 
         # Add new values to history
         x_past = [MID_X] + x_past
