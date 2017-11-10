@@ -54,12 +54,12 @@ while True:
         flags=0
     )
 
+    end_time = get_time()
+    delta_t = end_time - start_time
+    start_time = get_time()
+
     # Draw a rectangle around the faces and compute deltas
     for (x, y, w, h) in faces:
-
-        end_time = get_time()
-        delta_t = end_time - start_time
-        start_time = get_time()
 
         # Remove last elements in history
         x_past = x_past[0:2]
