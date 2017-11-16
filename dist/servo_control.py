@@ -2,7 +2,6 @@
 import Adafruit_PCA9685
 
 # Import threading modules
-import threading
 import time
 
 get_time = lambda: int(round(time.time() * 1000))
