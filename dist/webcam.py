@@ -25,7 +25,7 @@ video_capture = cv2.VideoCapture(0)
 video_capture.set(3, WIDTH)
 video_capture.set(4, HEIGHT)
 
-x_past = [0, 0]
+x_past = [0, 0, 0]
 
 start_time = 0
 end_time = 0
@@ -33,6 +33,8 @@ end_time = 0
 # Initialize servo module
 
 servo_control.initialize()
+
+frameskip = 0
 
 while True:
 
@@ -61,22 +63,19 @@ while True:
     for (x, y, w, h) in faces:
 
         # Remove last elements in history
-        x_past = x_past[0:1]
+        x_past = x_past[0:2]
 
         # Calculate midpoints of face
         MID_X = (x + (w / 2.0))
         VEL_X = (MID_X - (WIDTH / 2)) # x_past[0]) / delta_t
 
-        #if VEL_X < 0:
-        #    VEL_X = -1 * (VEL_X ** 2)
-        #else:
-        #    VEL_X = VEL_X ** 2
-
         # Add new values to history
         x_past = [MID_X] + x_past
 
-        # Send input to servo module to move servo
-        servo_control.handle_input(VEL_X, delta_t)
+        if frameskip >= 2:
+            VEL_X = (x_past[2] - (WIDTH / 2))
+            # Send input to servo module to move servo
+            servo_control.handle_input(VEL_X, delta_t)
 
         print("Face at X=%s | Movement: %s" % (MID_X, VEL_X))
         cv2.rectangle(gray, (x, y), (x+w, y+h), (0, 255, 0), 2)
@@ -86,6 +85,8 @@ while True:
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+
+    frameskip += 1
 
 # When everything is done, release the capture
 video_capture.release()
