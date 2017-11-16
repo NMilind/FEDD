@@ -75,7 +75,9 @@ while True:
         x_past = [MID_X] + x_past
 
         if frameskip >= 2:
-            VEL_X = (x_past[2] - (WIDTH / 2))
+            x0 = (x_past[2] - (WIDTH / 2))
+            x1 = (x_past[1] - (WIDTH / 2))
+            VEL_X = (x0 + x1) / 2
             # Send input to servo module to move servo
             servo_control.handle_input(VEL_X, delta_t, MOVE)
 
