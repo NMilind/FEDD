@@ -30,6 +30,8 @@ x_past = [0, 0, 0]
 start_time = 0
 end_time = 0
 
+MOVE = float(sys.argv[1])
+
 # Initialize servo module
 
 servo_control.initialize()
@@ -75,7 +77,7 @@ while True:
         if frameskip >= 2:
             VEL_X = (x_past[2] - (WIDTH / 2))
             # Send input to servo module to move servo
-            servo_control.handle_input(VEL_X, delta_t)
+            servo_control.handle_input(VEL_X, delta_t, MOVE)
 
         print("Face at X=%s | Movement: %s" % (MID_X, VEL_X))
         cv2.rectangle(gray, (x, y), (x+w, y+h), (0, 255, 0), 2)

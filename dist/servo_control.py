@@ -6,9 +6,6 @@ import time
 
 get_time = lambda: int(round(time.time() * 1000))
 
-# Movement constant
-MOVE = 1
-
 #Initialize the PCA9685 Board using the default address (0x40)
 pwm = Adafruit_PCA9685.PCA9685()
 
@@ -33,9 +30,9 @@ def initialize():
     pwm.set_pwm(CHANNEL, 0, current)
 
 # Handle input from the webcam
-def handle_input(v, dt):
+def handle_input(v, dt, move=1E-3):
     global current
-    current += MOVE * v * dt
+    current += move * v * dt
     current = get_pulse(current)
     current = int(current)
     pwm.set_pwm(CHANNEL, 0, current)
