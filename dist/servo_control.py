@@ -18,13 +18,8 @@ SERVO_MIN = 120
 SERVO_MAX = 660
 CHANNEL = 0
 
-# Current position
-current = 0
-currentThread = None
-
 # Make sure pulses stay in range
 def get_pulse(value):
-
     if value < SERVO_MIN:
         return SERVO_MIN
     elif value > SERVO_MAX:
@@ -45,27 +40,3 @@ def handle_input(v, dt):
     current = get_pulse(current)
     current = int(current)
     pwm.set_pwm(CHANNEL, 0, current)
-    return
-    global currentThread
-    if currentThread is None:
-        currentThread = threading.Thread(target=handle_input_async, args=(v, dt))
-        currentThread.start()
-    else:
-        currentThread.join()
-        currentThread = None
-        handle_input(v, dt)
-
-# Handle input asynchronously by lerping over the range in the given dt
-def handle_input_async(v, dt):
-    global current
-    start = get_time()
-    while get_time() <= start + dt:
-        dx = lerp(v, (get_time() / (start + dt)) * dt)
-        current += dx
-        current = get_pulse(current)
-        current = int(current)
-        pwm.set_pwm(CHANNEL, 0, current)
-
-# LERP helper function
-def lerp(v, t):
-    return MOVE * v * t
